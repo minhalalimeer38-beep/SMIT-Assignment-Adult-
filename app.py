@@ -1,10 +1,12 @@
 from fastapi import FastAPI
+import os
 import pickle
 import pandas as pd
 
 app = FastAPI()
 
-model = pickle.load(open("model.pkl", "rb"))
+model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
+model = pickle.load(open(model_path, "rb"))
 
 @app.get("/")
 def home():
