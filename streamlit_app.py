@@ -1,10 +1,9 @@
 import streamlit as st
 import pandas as pd
-import os
 import pickle
 
-model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
-model = pickle.load(open(model_path, "rb"))
+with open("model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 st.title("Adult Income Prediction")
 
