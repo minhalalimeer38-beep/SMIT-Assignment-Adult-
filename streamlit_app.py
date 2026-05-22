@@ -1,16 +1,10 @@
 import streamlit as st
 import pandas as pd
-import pickle
-
-model = pickle.load(open("model.pkl", "rb"))
+import requests
 
 st.title("Adult Income Prediction")
 
-age = st.number_input(
-                       "Age",
-                        min_value=18, 
-                        max_value=100
-                    )
+age = st.slider("Age", min_value=18, max_value=100, value=30)
 
 workclass = st.selectbox("Workclass", [
                                             'Private',
@@ -99,7 +93,10 @@ capital_gain = st.number_input("Capital Gain" , step = 1)
 
 capital_loss = st.number_input("Capital Loss" , step = 1)
 
-hours_per_week = st.number_input("Hours Per Week" , step = 1)
+hours_per_week = st.slider("Hours Per Week", 1, 100, 40)
+
+
+API_URL = "https://minhalali12-adult-income.hf.space/predict"
 
 if st.button("Predict"):
 
@@ -118,8 +115,14 @@ if st.button("Predict"):
         "hours_per_week": int(hours_per_week)
     }])
 
-    prediction = model.predict(data)[0]
+    response = requests.post(API_URL, params=payload)
 
-    label = "<=50K" if prediction == 0 else ">50K"
+    if response.status_code == 200:
+        result = response.json()["prediction"]
 
-    st.success(f"Prediction: {label}")
+        # convert 0/1 → label
+        label = "<=50K" if result == 0 else ">50K"
+
+        st.success(f"Prediction: {label}")
+    else:
+        st.error("API Error")
