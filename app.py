@@ -45,6 +45,6 @@ def predict(
 
     prediction = model.predict(data)[0]
 
-    label = "<=50K" if prediction[0] == 0 else ">50K"
+    label = "<=50K" if prediction == 0 else ">50K"
 
     return {"prediction": label}
