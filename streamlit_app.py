@@ -115,7 +115,7 @@ if st.button("Predict"):
         "hours_per_week": int(hours_per_week)
     }])
 
-    response = requests.post(API_URL, params=payload)
+    response = requests.post(API_URL, params=data)
 
     if response.status_code == 200:
         result = response.json()["prediction"]
