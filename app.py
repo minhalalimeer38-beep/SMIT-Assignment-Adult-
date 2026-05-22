@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-import os
 import pickle
 import pandas as pd
 
 app = FastAPI()
 
-model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
-model = pickle.load(open(model_path, "rb"))
+with open("model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 @app.get("/")
 def home():
@@ -44,7 +43,7 @@ def predict(
         
     }])
 
-    prediction = model.predict(data)
+    prediction = model.predict(data)[0]
 
     label = "<=50K" if prediction[0] == 0 else ">50K"
 
