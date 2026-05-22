@@ -25,9 +25,22 @@ workclass = st.selectbox("Workclass", [
                                         ])
 
 education = st.selectbox("Education", [
-                                            "Bachelors",
-                                            "HS-grad",
-                                            "Masters"
+                                           '11th', 
+                                           'HS-grad', 
+                                           'Assoc-acdm', 
+                                           'Some-college', 
+                                           '10th',
+                                           'Prof-school', 
+                                           '7th-8th', 
+                                           'Bachelors', 
+                                           'Masters', 
+                                           'Doctorate',
+                                           '5th-6th', 
+                                           'Assoc-voc', 
+                                           '9th', 
+                                           '12th', 
+                                           '1st-4th', 
+                                           'Preschool'
                                         ])
 
 educational_num = st.number_input("Educational Num" , step = 1)
@@ -62,7 +75,7 @@ occupation = st.selectbox("Occupation", [
 relationship = st.selectbox("Relationship", [
                                                 
                                                 'Husband',
-                                                'wife',
+                                                'Wife',
                                                 'Unmarried',
                                                 'Own-child', 
                                                 'Not-in-family', 
