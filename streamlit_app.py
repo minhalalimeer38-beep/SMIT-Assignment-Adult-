@@ -100,7 +100,7 @@ API_URL = "https://minhalali12-adult-income.hf.space/predict"
 
 if st.button("Predict"):
 
-    data = pd.DataFrame([{
+    payload = {
         "age": int(age),
         "workclass": workclass,
         "education": education,
@@ -113,9 +113,9 @@ if st.button("Predict"):
         "capital_gain": int(capital_gain),
         "capital_loss": int(capital_loss),
         "hours_per_week": int(hours_per_week)
-    }])
+    }
 
-    response = requests.post(API_URL, params=data)
+    response = requests.post(API_URL, params=payload)
 
     if response.status_code == 200:
         result = response.json()["prediction"]
