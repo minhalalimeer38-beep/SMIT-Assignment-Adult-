@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+model = pickle.load(open("model.pkl", "rb"))
+
 st.title("Adult Income Prediction")
 
 age = st.number_input(
@@ -116,7 +118,7 @@ if st.button("Predict"):
         "hours_per_week": int(hours_per_week)
     }])
 
-    prediction = model.predict(data)
+    prediction = model.predict(data)[0]
 
     label = "<=50K" if prediction == 0 else ">50K"
 
