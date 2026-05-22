@@ -187,12 +187,4 @@ This project demonstrates an end-to-end Machine Learning workflow including:
 - API integration
 - Machine Learning deployment basics
 
-The project is suitable for beginners and intermediate learners interested in Machine Learning and deployment.
 
----
-
-## Author
-
-Minhal Ali Meer
-
-BSCS Student | Machine Learning Learner
