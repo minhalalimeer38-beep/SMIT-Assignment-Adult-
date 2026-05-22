@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-with open("model.pkl", "rb") as file:
-    model = pickle.load(file)
-
 st.title("Adult Income Prediction")
 
 age = st.number_input(
@@ -121,6 +118,6 @@ if st.button("Predict"):
 
     prediction = model.predict(data)
 
-    label = "<=50K" if prediction[0] == 0 else ">50K"
+    label = "<=50K" if prediction == 0 else ">50K"
 
     st.success(f"Prediction: {label}")
